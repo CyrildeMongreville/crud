@@ -15,7 +15,7 @@ include "fonction.php" ;
 </head>
 <body>
 <br><br>
-<h1 style="text-align: center">Formulaire d'ajout d'utilisateur</h1>
+<h1 style="text-align: center">Modifier les informations d'un utilisateur</h1>
 <br>
 <ul style="list-style: none; display:flex; justify-content:space-evenly">
         <li><a href="index2.php">Afficher</a></li>
@@ -28,6 +28,10 @@ include "fonction.php" ;
     <div class="row" style="display:flex; justify-content:center">
         <div class="col-md-6">
             <form method="post">
+            <div class="mb-3">
+                <label for="id" class="form-label">Identifiant</label>
+                <input type="number" class="form-control" name="identifiant" required>
+            </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" required placeholder="Veuillez renseigner l'email...">
@@ -60,16 +64,16 @@ include "fonction.php" ;
 <?php
 
 if(isset($_POST['envoyer'])){
-    if(!empty($_POST['email']) AND !empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['age']))
+    if(!empty($_POST['email']) AND !empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['age'])AND !empty($_POST['identifiant']))
     {
+        $identifiant = $_POST['identifiant'];
         $email = $_POST['email'];
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $age = $_POST['age'];
 
-        ajouter($email, $nom, $prenom, $age);
+        modifier($email, $nom, $prenom, $age, $identifiant);
     }
-
 }
 
 ?>

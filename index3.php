@@ -2,6 +2,7 @@
 
 include "fonction.php" ;
 
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,7 @@ include "fonction.php" ;
 </head>
 <body>
 <br><br>
-<h1 style="text-align: center">Formulaire d'ajout d'utilisateur</h1>
+<h2 style="text-align: center">Supprimer les informations d'un utilisateur par son identifiant</h2>
 <br>
 <ul style="list-style: none; display:flex; justify-content:space-evenly">
         <li><a href="index2.php">Afficher</a></li>
@@ -28,23 +29,11 @@ include "fonction.php" ;
     <div class="row" style="display:flex; justify-content:center">
         <div class="col-md-6">
             <form method="post">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" required placeholder="Veuillez renseigner l'email...">
-            </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Nom</label>
-                <input type="name" class="form-control" name="nom" required>
-            </div>
-            <div class="mb-3">
-                <label for="firstname" class="form-label">Prénom</label>
-                <input type="name" class="form-control" name="prenom" required>
-            </div>
-            <div class="mb-3">
-                <label for="age" class="form-label">Age</label>
-                <input type="number" class="form-control" name="age" required>
-            </div>
-            <input type="submit" class="btn btn-danger" value="Envoyer" name="envoyer">
+                <div class="mb-3">
+                    <label for="id" class="form-label">Identifiant</label>
+                    <input type="number" class="form-control" name="identifiant" required>
+                </div>
+                <input type="submit" class="btn btn-danger" value="Supprimer" name="envoyer">
             </form>
         </div>
     </div>
@@ -57,19 +46,16 @@ include "fonction.php" ;
 </body>
 </html>
 
+
 <?php
 
 if(isset($_POST['envoyer'])){
-    if(!empty($_POST['email']) AND !empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['age']))
+    if(!empty($_POST['identifiant']))
     {
-        $email = $_POST['email'];
-        $nom = $_POST['nom'];
-        $prenom = $_POST['prenom'];
-        $age = $_POST['age'];
+        $identifiant = $_POST['identifiant'] ;
 
-        ajouter($email, $nom, $prenom, $age);
+       supprimer($identifiant) ;
     }
-
 }
 
 ?>

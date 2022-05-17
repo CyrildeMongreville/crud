@@ -10,15 +10,31 @@ function ajouter($a, $b, $c, $d){
 }
 
 function afficher(){
-    
+    if(require("database.php")){
+        $requete= $database->prepare("SELECT * FROM utilisateur") ;
+        $requete->execute() ;
+        $tableau= $requete->fetchAll(PDO::FETCH_OBJ) ; 
+        return $tableau ;
+        $requete->closeCursor() ;
+    }
 }
 
-function modifier(){
-    
+function modifier($email, $nom, $prenom, $age, $id){
+    if(require("database.php"))
+    {
+        $requete = $database->prepare("UPDATE utilisateur SET email=?, nom=?, prenom=?, age=? WHERE id=?");
+        $requete->execute(array($email, $nom, $prenom, $age, $id));
+        $requete->closeCursor();
+    }
 }
 
-function supprimer(){
-    
+
+function supprimer($id){
+    if(require("database.php")){
+        $requete= $database->prepare("DELETE FROM utilisateur WHERE id=?") ;
+        $requete->execute(array($id));
+        $requete->closeCursor() ;
+    }
 }
 
 ?>
